@@ -7,6 +7,12 @@
 		return preg_match('/^[^.\/][^\/]*\.(jpe?g|png|gif)$/i',$name)>0;
 	}
 
+		/* handle image delivery */
+	if (isset($_REQUEST['phpinfo'])) {
+		phpinfo();
+		exit;
+	}
+	
 	/* handle image delivery */
 	if (isset($_REQUEST['f'])) {
 		if (isImageName($_REQUEST['f']) && is_file($dataDir . $_REQUEST['f'])) {
