@@ -24,7 +24,7 @@
 			<div class="row">
 
 				<div>{{ name|e }}</div>
-				<div><img src='?f={{ name|e('html_attr') }}'/></div>
+				<div><img src='{{ name|e('html_attr') }}'/></div>
 
 			</div>	
 		{% endfor %}
