@@ -7,9 +7,11 @@
 		</style>
 	</head>
 	<body>
-		<h2>{{ message|e }}</h2>
-
+	
 		{% if upload %}
+		
+			<h2>{{ message|e }}</h2>
+
 		
 			<form method="post" enctype="multipart/form-data">
 				Upload: <input type='file' name='the-file' value="Choose Photo"/> <br> 
@@ -22,11 +24,14 @@
 
 		{% for name in images %}
 			<div class="row">
-
 				<div>{{ name|e }}</div>
-				<div><img src='{{ name|e('html_attr') }}'/></div>
-
+				{% if upload %}
+				        <div><img src='/sync/{{ name|e('html_attr') }}'/></div>
+				{% else %}
+					<div><img src='{{ name|e('html_attr') }}'/></div>
+				{% endif %}
 			</div>	
 		{% endfor %}
+		
 	</body>
 </html>
