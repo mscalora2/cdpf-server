@@ -28,10 +28,12 @@
 				header ("HTTP/1.0 404 Not Found");
 				exit;
 			}
-			header('Expires: 0');
-			header('Cache-Control: must-revalidate');
+			$seconds_to_cache = 60*60*24*365*5;
+			$ts = gmdate("D, d M Y H:i:s", time() + $seconds_to_cache) . " GMT";
+			header("Expires: $ts");
+			header("Pragma: cache");
+			header("Cache-Control: max-age=$seconds_to_cache");
 			header('Pragma: public');
-			header('Content-Length: ' . filesize($file));
 			ob_clean();
 			flush();
 			readfile($file);
