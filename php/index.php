@@ -1,6 +1,6 @@
 <?php
 
-	$dataDir = isset($_ENV['OPENSHIFT_DATA_DIR']) ? $_ENV['OPENSHIFT_DATA_DIR'] : ('/var/www/data/');
+	$dataDir = isset($_ENV['OPENSHIFT_DATA_DIR']) ? $_ENV['OPENSHIFT_DATA_DIR'] : (isset($_SERVER['OPENSHIFT_DATA_DIR']) ? $_SERVER['OPENSHIFT_DATA_DIR'] : '/var/www/data/');
 	$upload = !isset($_REQUEST['list']);
   
 	function isImageName($name) {
