@@ -49,7 +49,3 @@ yourself by using git and an editor. To get started, follow one of the OpenShift
 
 You will be limited to 1 GB total disk space on an OpenShift free account but that's plenty for most people. 
 I find that most of the photos I use with CDPF are under 1 MB each.
-=======
-Other resources are available at: http://tinyurl.com/pi-cdpf
-
-Test: 4
