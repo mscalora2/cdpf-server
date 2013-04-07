@@ -26,6 +26,12 @@
 		max-width: 900px;
 		min-width: 400px;
 	}
+	body.setup {
+		background: rgb(230, 223, 253);
+	}
+	body.setup #login {
+		background: rgb(202, 186, 253);
+	}
 	.section, .row {
 		display: inline-block;
 	}
@@ -55,6 +61,7 @@
 	}
 	.prompt {
 		font-size: 120%;
+		margin-bottom: 10px;
 	}
 	.message {
 		font-style: italic;

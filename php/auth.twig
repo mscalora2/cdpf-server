@@ -6,11 +6,11 @@
 			@import url(style.css);
 		</style>
 	</head>
-	<body>
+	<body class="{% if setup %}setup{% else %}login{% endif %}">
 	
 		<div class='title'>{{ title|e }}</div>
 		
-		<div id='footer'>
+		<div id='login'>
 			<form id='logout' method='post'>
 				<div class='prompt'>{{ prompt|e }}</div>
 				<div>Password: <input autofocus="1" minlength="6" type='password' name='secret' /></div>

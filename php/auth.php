@@ -16,7 +16,7 @@
 		}
 		
 		echo $twig->render('auth.twig', array(
-			'title' => $title,
+			'title' => $title . " - One Time Setup",
 			'prompt' => "Enter password of at least 6 characters to secure your site.",
 			'setup' => true
 		));
