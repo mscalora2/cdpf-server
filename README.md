@@ -4,7 +4,9 @@ Setting up a CDPF Server instance on OpenShift
 This web app is the server component for the **Connected Digital Photo Frame** project based on the Raspberry Pi, 
 see http://tinyurl.com/pi-cdpf for more info about this project.
 
-STEP 1: Got to http://openshift.com and sign up for a free account. 
+![CDPF System](http://mscalora.com/content/images/CDPFDiagram-1.png "CDPF System")
+
+STEP 1: Go to http://openshift.com and sign up for a free account. 
 -----
 
 You will need to use a real email address that you can check and confirm to complete the signup process 
