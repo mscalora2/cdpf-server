@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec ssh -i "$OPENSHIFT_DATA_DIR.selfupdate/id_rsa" -o "StrictHostKeyChecking no" "$@"

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+mkdir -p "$OPENSHIFT_DATA_DIR.selfupdate"
+cd "$OPENSHIFT_DATA_DIR.selfupdate"
+
+if [ ! -f id_rsa ] ; then 
+	ssh-keygen -t rsa -C "cdpftest-scalora.rhcloud.com" -N "" -f id_rsa
+
+	echo "<p>You must add this public key to your OpenShift account:</p>"
+	echo "<code>"
+	cat id_rsa.pub
+	echo "</code>"
+	echo "<p>Goto <a href='https://openshift.redhat.com/app/account/settings'>"
+	echo "https://openshift.redhat.com/app/account/settings</a> and click on </p>"
+	exit 10
+fi
+
+export GIT_SSH="$OPENSHIFT_REPO_DIR/misc/self_update_ssh"
+
+
