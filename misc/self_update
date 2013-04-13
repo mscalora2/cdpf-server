@@ -40,11 +40,13 @@ echo "Selfupdate Folder: $PWD"
 # get the latest from github
 if [ -d repo ] ; then 
 	cd repo
+echo "Selfupdate repository: $PWD"
 	git reset --hard
 	git pull origin master
 else
 	git clone $GITHUB_REPO repo
 	cd repo
+echo "Selfupdate repository: $PWD"
 	git remote add openshift $LOCAL_REPO
 fi
 
