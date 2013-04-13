@@ -35,6 +35,8 @@ if [[ $?>0 ]]; then
 	exit 10
 fi
 
+echo "Selfupdate Folder: $PWD"
+
 # get the latest from github
 if [ -d repo ] ; then 
 	cd repo
