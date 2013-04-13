@@ -1,6 +1,9 @@
 #!/bin/bash
 set -x
 
+set
+export
+
 export GIT_SSH="${OPENSHIFT_REPO_DIR}misc/self_update_ssh"
 
 GITHUB_REPO="https://github.com/mscalora2/cdpf-server.git"
