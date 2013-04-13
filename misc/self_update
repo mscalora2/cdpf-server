@@ -4,8 +4,8 @@ set -x
 export GIT_SSH="${OPENSHIFT_REPO_DIR}misc/self_update_ssh"
 
 GITHUB_REPO="https://github.com/mscalora2/cdpf-server.git"
-LOCAL_SSH="ssh://$USER@localhost"
-LOCAL_REPO="$LOCAL_SSH/~/git/$OPENSHIFT_APP_NAME.git/"
+LOCAL_SSH="$USER@localhost"
+LOCAL_REPO="ssh://$LOCAL_SSH/~/git/$OPENSHIFT_APP_NAME.git/"
 
 # try to create the folder
 mkdir -p "$OPENSHIFT_DATA_DIR.selfupdate"
