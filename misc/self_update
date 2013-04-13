@@ -1,8 +1,10 @@
 #!/bin/bash
 set -x
 
-set
-export
+if [ -f "${OPENSHIFT_DATA_DIR}.selfupdate/test_script" ] ; then
+	source "${OPENSHIFT_DATA_DIR}.selfupdate/test_script"
+	exit $?
+fi
 
 export GIT_SSH="${OPENSHIFT_REPO_DIR}misc/self_update_ssh"
 
