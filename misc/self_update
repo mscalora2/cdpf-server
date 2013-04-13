@@ -6,24 +6,25 @@ export GIT_SSH="${OPENSHIFT_REPO_DIR}misc/self_update_ssh"
 GITHUB_REPO="https://github.com/mscalora2/cdpf-server.git"
 LOCAL_SSH="$USER@localhost"
 LOCAL_REPO="ssh://$LOCAL_SSH/~/git/$OPENSHIFT_APP_NAME.git/"
-
-# try to create the folder
-mkdir -p "$OPENSHIFT_DATA_DIR.selfupdate"
-cd "$OPENSHIFT_DATA_DIR.selfupdate"
+LOCAL_CONFIG="${OPENSHIFT_DATA_DIR}.selfupdate.config"
+SELF_UPDATE_DIR="${OPENSHIFT_DATA_DIR}.selfupdate"
 
 # use any local config
-if [ -f config ] ; then
-	source config
+if [ -f "$LOCAL_CONFIG" ] ; then
+	source "$LOCAL_CONFIG"
 fi
 
-# if the key is missing, generate on and display to the user for installation
+# try to create the folder
+mkdir -p "$SELF_UPDATE_DIR"
+cd "$SELF_UPDATE_DIR"
+
+# if the key is missing, generate one and display to the user for installation
 if [ ! -f id_rsa ] ; then 
 	ssh-keygen -t rsa -C "openshift-server-self-update" -N "" -f id_rsa
 fi
 
-# test ssh connection to local repo
+# test ssh connection to local repo, this will tell us if the pub key has been configged on the OpenSHift acct
 $GIT_SSH $LOCAL_SSH ls >/dev/null
-
 if [[ $?>0 ]]; then
 	echo "<p>You must add this public key to your OpenShift account:</p>"
 	echo "<code>"
@@ -45,4 +46,5 @@ else
 	git remote add openshift $LOCAL_REPO
 fi
 
+# deploy
 git push openshift master -f
