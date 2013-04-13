@@ -1,11 +1,30 @@
 #!/bin/bash
+set -x
 
+export GIT_SSH="${OPENSHIFT_REPO_DIR}misc/self_update_ssh"
+
+GITHUB_REPO="https://github.com/mscalora2/cdpf-server.git"
+LOCAL_SSH="ssh://$USER@localhost"
+LOCAL_REPO="$LOCAL_SSH/~/git/$OPENSHIFT_APP_NAME.git/"
+
+# try to create the folder
 mkdir -p "$OPENSHIFT_DATA_DIR.selfupdate"
 cd "$OPENSHIFT_DATA_DIR.selfupdate"
 
-if [ ! -f id_rsa ] ; then 
-	ssh-keygen -t rsa -C "cdpftest-scalora.rhcloud.com" -N "" -f id_rsa
+# use any local config
+if [ -f config ] ; then
+	source config
+fi
 
+# if the key is missing, generate on and display to the user for installation
+if [ ! -f id_rsa ] ; then 
+	ssh-keygen -t rsa -C "openshift-server-self-update" -N "" -f id_rsa
+fi
+
+# test ssh connection to local repo
+$GIT_SSH $LOCAL_SSH ls >/dev/null
+
+if [[ $?>0 ]]; then
 	echo "<p>You must add this public key to your OpenShift account:</p>"
 	echo "<code>"
 	cat id_rsa.pub
@@ -15,6 +34,15 @@ if [ ! -f id_rsa ] ; then
 	exit 10
 fi
 
-export GIT_SSH="$OPENSHIFT_REPO_DIR/misc/self_update_ssh"
+# get the latest from github
+if [ -d repo ] ; then 
+	cd repo
+	git reset --hard
+	git pull origin master
+else
+	git clone $GITHUB_REPO repo
+	cd repo
+	git remote add openshift $LOCAL_REPO
+fi
 
-
+git push openshift master -f
